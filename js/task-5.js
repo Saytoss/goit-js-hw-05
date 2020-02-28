@@ -15,7 +15,7 @@ class Car {
         return this._price;
     }
     set price(amount) {
-        return (this._price = amount);
+        this._price = amount;
     }
     turnOn() {
         this.isOn = true;
@@ -27,16 +27,20 @@ class Car {
     accelerate(value) {
         if (this.speed + value <= this.maxSpeed) {
             this.speed += value;
+        } else {
+            this.speed = this.maxSpeed;
         }
     }
     decelerate(value) {
         if (this.speed - value > 0) {
             this.speed -= value;
+        } else {
+            this.speed = 0;
         }
     }
     drive(hours) {
         if (this.isOn) {
-            this.distance = hours * this.speed;
+            this.distance += hours * this.speed;
         }
     }
 }
